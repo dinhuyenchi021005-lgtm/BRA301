@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRA301 - Quản trị Thương hiệu (Mindmap & Siêu Tổng Hợp)</title>
+<style>
+  :root {
+    --color-background-main: #ffffff;
+    --color-background-secondary: #f8fafc;
+    --color-background-tertiary: #f1f5f9;
+    --color-border-tertiary: #e2e8f0;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #334155;
+    --color-text-tertiary: #64748b;
+    --color-accent: #2563eb;
+    --color-accent-light: #eff6ff;
+    --border-radius-lg: 12px;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-main: #0f172a;
+      --color-background-secondary: #1e293b;
+      --color-background-tertiary: #334155;
+      --color-border-tertiary: #334155;
+      --color-text-primary: #f8fafc;
+      --color-text-secondary: #cbd5e1;
+      --color-text-tertiary: #94a3b8;
+      --color-accent: #3b82f6;
+      --color-accent-light: #1e3a8a;
+    }
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.6;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--color-background-main);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+    margin-bottom: 40px;
+  }
+
+  /* --- Mindmap Styles --- */
+  .node rect {
+    fill: var(--color-background-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .node:hover rect {
+    filter: brightness(0.95);
+  }
+  .node text {
+    font-family: inherit;
+    pointer-events: none;
+    fill: var(--color-text-primary);
+  }
+  .node .th { font-weight: 600; font-size: 14px; }
+  .node .ts { font-weight: 500; font-size: 11px; }
+
+  #dp {
+    border: 1px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem 1.5rem;
+    background: var(--color-background-secondary);
+    min-height: 86px;
+    transition: border-color 0.3s;
+    margin-top: 20px;
+  }
+  .dem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0.875rem 0;
+  }
+  .dbr {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .dtt {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+  }
+  .dit {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .dbul {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  
+  .lgd {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    margin: 1.5rem 0 1rem;
+  }
+  .lgi {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .lgi:hover { color: var(--color-text-primary); }
+  .lgd-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+  }
+
+  /* --- Article Styles --- */
+  .article-content {
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 2px dashed var(--color-border-tertiary);
+  }
+  
+  .article-content h1 {
+    font-size: 24px;
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .article-content .intro {
+    text-align: center;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-bottom: 40px;
+    padding: 15px;
+    background: var(--color-accent-light);
+    border-radius: 8px;
+  }
+
+  .article-content h2 {
+    font-size: 20px;
+    color: var(--color-text-primary);
+    border-left: 4px solid var(--color-accent);
+    padding-left: 12px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .article-content h3 {
+    font-size: 17px;
+    color: var(--color-text-primary);
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  .article-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .article-content ul, .article-content ol {
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+    padding-left: 24px;
+  }
+
+  .article-content li {
+    margin-bottom: 8px;
+  }
+
+  .article-content strong {
+    color: var(--color-text-primary);
+  }
+
+  /* Callout Box */
+  .callout {
+    background: var(--color-background-tertiary);
+    border-left: 4px solid #f59e0b;
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .callout strong {
+    color: #b45309;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .callout strong { color: #fcd34d; }
+  }
+
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid var(--color-border-tertiary);
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--color-background-tertiary);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--color-background-secondary);
+  }
+
+  /* Pre block for diagrams */
+  pre.diagram {
+    background: var(--color-background-tertiary);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-tertiary);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- INTERACTIVE MINDMAP SECTION -->
+  <h2 style="text-align: center; margin-bottom: 5px;">MINDMAP QUẢN TRỊ THƯƠNG HIỆU</h2>
+  <p style="text-align:center; font-size:13px; color:var(--color-text-secondary); margin: 0 0 20px;">
+    <strong>Hướng dẫn:</strong> Click vào các nút nhánh để xem nội dung chi tiết
+  </p>
+
+  <svg id="mm" width="100%" viewBox="0 0 680 556" role="img">
+    <title>BRA301 Brand Management Mind Map</title>
+  </svg>
+
+  <div class="lgd" id="lg"></div>
+
+  <div id="dp">
+    <div id="dd" class="dem">
+      <span style="font-size:14px; color:var(--color-text-tertiary)">Click một nút trên sơ đồ để xem nội dung chi tiết tại đây</span>
+    </div>
+    <div id="dc" style="display:none">
+      <div id="dbr" class="dbr"></div>
+      <div id="dtt" class="dtt"></div>
+      <div id="dis"></div>
+    </div>
+  </div>
+
+  <!-- ARTICLE CONTENT SECTION -->
+  <div class="article-content">
+    <h1>🏛️ SIÊU TỔNG HỢP BRA301 — QUẢN TRỊ THƯƠNG HIỆU CHIẾN LƯỢC</h1>
+    
+    <div class="intro">
+      <strong>Triết lý cốt lõi của môn học:</strong> Thương hiệu (Brand) không phải là logo hay tên gọi — đó là tổng thể những gì tồn tại trong tâm trí và trái tim khách hàng. Mọi framework trong môn này đều phục vụ một mục tiêu duy nhất: xây dựng và bảo vệ <strong>Tài sản Thương hiệu (Brand Equity)</strong>.
+    </div>
+
+    <h2>GIAI ĐOẠN 1: NỀN TẢNG — KHÁI NIỆM & ĐỊNH VỊ THƯƠNG HIỆU</h2>
+    <p><em>Tại sao cần giai đoạn này? Trước khi xây nhà, phải đặt móng. Trước khi chi tiền marketing, phải trả lời được: Thương hiệu của tôi là gì? Nó khác đối thủ ở điểm nào? Và trong mắt khách hàng, nó đứng ở đâu?</em></p>
+
+    <h3>1.1 Thương hiệu vs. Sản phẩm — Sự khác biệt căn bản</h3>
+    <ul>
+      <li><strong>Sản phẩm (Product):</strong> Bất cứ thứ gì đưa ra thị trường để thỏa mãn nhu cầu (need) hoặc mong muốn (want). Đây là thứ hữu hình.</li>
+      <li><strong>Thương hiệu (Brand):</strong> Là sản phẩm cộng thêm những khía cạnh phân biệt — hình ảnh, cảm xúc, uy tín — giúp nó khác biệt khỏi đối thủ cùng loại.</li>
+    </ul>
+    <div class="callout">
+      <strong>Luận điểm cốt lõi:</strong> Brand làm nên sản phẩm, không phải ngược lại. Thương hiệu mạnh tạo ra Brand Equity (Tài sản thương hiệu) — không chỉ giúp bán hàng mà còn biến khách hàng thành người giới thiệu và đại sứ, tác động trực tiếp đến các hoạt động sinh lời của doanh nghiệp.
+    </div>
+
+    <h3>1.2 Mô hình 5 Cấp độ Sản phẩm (Five Levels of Product Meaning)</h3>
+    <p>Tại sao dùng mô hình này? Để hiểu rằng thương hiệu không cạnh tranh ở tầng 1 hay 2, mà chiến thắng ở tầng 4 và 5 — nơi đối thủ khó sao chép nhất.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Cấp độ</th>
+          <th>Tên</th>
+          <th>Ý nghĩa</th>
+          <th>Ví dụ (Khách sạn)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Core Benefit Level</strong> (Lợi ích cốt lõi)</td><td>Nhu cầu thực sự mà khách hàng muốn thỏa mãn</td><td>"Nghỉ ngơi"</td></tr>
+        <tr><td>2</td><td><strong>Generic Product Level</strong> (Sản phẩm chung)</td><td>Phiên bản tối giản, chỉ đủ để hoạt động</td><td>Phòng có giường và mái che</td></tr>
+        <tr><td>3</td><td><strong>Expected Product Level</strong> (Sản phẩm kỳ vọng)</td><td>Những gì khách hàng mặc định phải có</td><td>Khăn tắm, wifi, nước nóng</td></tr>
+        <tr><td>4</td><td><strong>Augmented Benefit Level</strong> (Lợi ích gia tăng)</td><td>Điểm khác biệt (POD) — tính năng vượt kỳ vọng</td><td>Check-in online, concierge 24h</td></tr>
+        <tr><td>5</td><td><strong>Potential Benefit Level</strong> (Lợi ích tiềm năng)</td><td>Mọi cải tiến có thể xảy ra trong tương lai</td><td>Phòng tự cá nhân hóa bằng AI</td></tr>
+      </tbody>
+    </table>
+    
+    <p><strong>Ba loại hàng hóa quan trọng cần phân biệt:</strong></p>
+    <ul>
+      <li><strong>Search goods:</strong> Dễ đánh giá trước khi mua (quần áo, đồ điện tử).</li>
+      <li><strong>Experience goods:</strong> Chỉ đánh giá được sau khi dùng (nhà hàng, resort).</li>
+      <li><strong>Credence goods:</strong> Rất khó đánh giá dù đã dùng xong — mua dựa trên niềm tin (bảo hiểm, thuốc, dịch vụ ngân hàng). → <em>Đây là loại hàng Brand Equity quan trọng nhất vì khách hàng không có cách nào khác để ra quyết định.</em></li>
+    </ul>
+
+    <h3>1.3 Tại sao Brand quan trọng? — 10 Thách thức & Cơ hội</h3>
+    <ul>
+      <li><strong>Downward pressure on prices</strong> (Áp lực giảm giá): Công cụ so sánh giá trực tuyến buộc thương hiệu phải tạo ra giá trị đủ lớn để khách hàng trả premium.</li>
+      <li><strong>Ubiquitous connectivity & Consumer backlash</strong> (Kết nối mọi lúc & Phản ứng tẩy chay): Người dùng bị quá tải quảng cáo → marketing phải tạo ra giá trị thực sự, không phải làm gián đoạn.</li>
+      <li><strong>Winner-takes-all markets</strong> (Thị trường kẻ thắng có tất cả): Thương hiệu dẫn đầu như Google, Facebook chiếm phần lớn thị phần.</li>
+      <li><strong>Unexpected sources of competition</strong> (Đối thủ bất ngờ từ ngành khác): Taxi không cạnh tranh với taxi khác — mà cạnh tranh với Uber.</li>
+      <li><strong>Disintermediation & Reintermediation</strong> (Loại bỏ & Tái lập trung gian): Nike bán thẳng qua app (bỏ đại lý), đồng thời Shopee và Grab trở thành "siêu trung gian" mới.</li>
+      <li><strong>The importance of customer-centricity</strong> (Lấy khách hàng làm trung tâm): Brand hiện đại = toàn bộ Customer Experience (Trải nghiệm khách hàng).</li>
+    </ul>
+
+    <h3>1.4 Framework CBBE — Nền tảng lý thuyết</h3>
+    <p><strong>Customer-Based Brand Equity (CBBE)</strong> = Hiệu ứng khác biệt mà kiến thức thương hiệu tạo ra đối với phản ứng của người tiêu dùng trước các hoạt động marketing.</p>
+    <div class="callout">
+      <strong>Luận điểm cốt lõi:</strong> Sức mạnh của thương hiệu không nằm trong nhà máy hay văn phòng — nó nằm trong tâm trí và trái tim khách hàng.
+    </div>
+    <p><strong>Kiến thức thương hiệu (Brand Knowledge)</strong> gồm 2 trụ cột:</p>
+    <ol>
+      <li><strong>Brand Awareness (Nhận diện thương hiệu):</strong>
+        <ul>
+          <li><em>Brand Recognition (Nhận diện):</em> Xác nhận đã từng thấy thương hiệu khi được gợi ý.</li>
+          <li><em>Brand Recall (Gợi nhớ):</em> Tự truy xuất thương hiệu từ trí nhớ khi có nhu cầu — quan trọng hơn nhiều.</li>
+        </ul>
+      </li>
+      <li><strong>Brand Image (Hình ảnh thương hiệu):</strong> Toàn bộ nhận thức, được phản ánh qua các liên tưởng thương hiệu (Brand Associations). Cần: Mạnh mẽ + Thuận lợi + Độc đáo.</li>
+    </ol>
+
+    <h3>1.5 Định vị Thương hiệu (Brand Positioning)</h3>
+    <p>Định vị được xây dựng qua 3 yếu tố: <strong>Target Market</strong> (Thị trường mục tiêu), <strong>Nature of Competition</strong> (Bản chất cạnh tranh), và <strong>POP & POD</strong>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Khái niệm</th>
+          <th>Tên đầy đủ</th>
+          <th>Bản chất</th>
+          <th>Vai trò chiến lược</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>POP</strong></td>
+          <td>Points-of-Parity (Điểm tương đồng)</td>
+          <td>Những thuộc tính không cần độc quyền, có thể chia sẻ với đối thủ</td>
+          <td>Chứng minh "tôi đủ tiêu chuẩn" — phá vỡ lý do không chọn bạn</td>
+        </tr>
+        <tr>
+          <td><strong>POD</strong></td>
+          <td>Points-of-Difference (Điểm khác biệt)</td>
+          <td>Thuộc tính hoặc lợi ích mà người dùng liên tưởng mạnh mẽ, đánh giá cao</td>
+          <td>Cung cấp lý do thuyết phục để chọn bạn thay vì đối thủ</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Chiến lược tối ưu:</strong> Neutralize POP, Win on POD (Hòa điểm tương đồng, Thắng ở điểm khác biệt).</div>
+
+    <h2>GIAI ĐOẠN 2: "VẬT LIỆU" — YẾU TỐ THƯƠNG HIỆU & LIÊN KẾT THỨ CẤP</h2>
+    <p><em>Tại sao cần giai đoạn này? Sau khi có định vị (bản thiết kế), bạn cần vật liệu xây dựng — những thứ hữu hình mà khách hàng thực sự nhìn thấy, nghe thấy và cảm nhận về thương hiệu.</em></p>
+
+    <h3>2.1 Các Yếu tố Thương hiệu (Brand Elements)</h3>
+    <p>6 yếu tố thương hiệu chính bao gồm: <strong>Brand Names</strong> (Tên), <strong>URLs</strong> (Địa chỉ web), <strong>Logos & Symbols</strong> (Biểu trưng), <strong>Characters</strong> (Nhân vật đại diện), <strong>Slogans</strong> (Khẩu hiệu), <strong>Jingles</strong> (Nhạc hiệu) và <strong>Packaging</strong> (Bao bì).</p>
+    
+    <p><strong>6 Tiêu chí vàng để đánh giá một Brand Element tốt:</strong></p>
+    <ol>
+      <li><strong>Memorability (Dễ nhớ):</strong> Khách hàng có thể gợi nhớ nó dễ dàng không?</li>
+      <li><strong>Meaningfulness (Ý nghĩa):</strong> Nó mô tả loại sản phẩm hoặc lợi ích không?</li>
+      <li><strong>Likability (Ưa thích):</strong> Nó có thú vị và đẹp về mặt thẩm mỹ không?</li>
+      <li><strong>Transferability (Chuyển đổi):</strong> Dùng được cho danh mục khác hoặc thị trường khác không?</li>
+      <li><strong>Adaptability (Thích nghi):</strong> Có thể cập nhật theo thời gian không?</li>
+      <li><strong>Protectability (Bảo hộ):</strong> Có thể đăng ký pháp lý và khó sao chép không?</li>
+    </ol>
+
+    <h3>2.2 Liên kết Thứ cấp (Secondary Brand Associations)</h3>
+    <p><strong>8 nguồn liên kết thứ cấp chính:</strong> Company (Công ty mẹ), Country of Origin (Quốc gia xuất xứ), Channels of Distribution (Kênh phân phối), Co-Branding (Liên minh thương hiệu), Ingredient Branding (Thương hiệu thành phần - VD: Intel Inside), Licensing (Nhượng quyền), Celebrity Endorsement (Người nổi tiếng ủng hộ), Events (Sự kiện tài trợ).</p>
+    
+    <p><strong>3 yếu tố quyết định mức độ thành công:</strong></p>
+    <ul>
+      <li><strong>Awareness:</strong> Khách hàng phải biết đến thực thể được liên kết.</li>
+      <li><strong>Meaningfulness:</strong> Kiến thức về thực thể đó phải có ý nghĩa với thương hiệu.</li>
+      <li><strong>Transferability:</strong> Liên tưởng từ thực thể đó phải lan sang thương hiệu một cách hợp lý.</li>
+    </ul>
+
+    <h2>GIAI ĐOẠN 3: THỰC THI — TÍCH HỢP MARKETING & IMC</h2>
+    
+    <h3>3.1 Chiến lược 4P trong xây dựng Brand Equity</h3>
+    <ul>
+      <li><strong>Chiến lược Sản phẩm:</strong> Tập trung vào <strong>Perceived Quality (Chất lượng cảm nhận)</strong> và các chương trình Loyalty.</li>
+      <li><strong>Chiến lược Giá:</strong> Sử dụng <strong>Value Pricing (Định giá theo giá trị)</strong> hoặc <strong>EDLP (Giá thấp mỗi ngày)</strong> để duy trì sự nhất quán.</li>
+      <li><strong>Chiến lược Kênh:</strong> Nhà bán lẻ ảnh hưởng mạnh nhất đến Brand Equity vì đây là nơi khách hàng đưa ra quyết định cuối cùng.</li>
+    </ul>
+
+    <h3>3.2 Truyền thông Marketing Tích hợp (IMC) và Mô hình 6 Cs</h3>
+    <p>Bước thuyết phục khách hàng: Tiếp xúc → Chú ý → Hiểu → Chấp nhận → Ý định → Hành vi.</p>
+    <p><strong>Mô hình 6 Cs — Tiêu chí Thiết kế IMC:</strong></p>
+    <table>
+      <thead>
+        <tr><th>Tiêu chí</th><th>Câu hỏi cốt lõi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Coverage</strong> (Độ phủ)</td><td>Kênh này tiếp cận được bao nhiêu % khách hàng mục tiêu?</td></tr>
+        <tr><td><strong>Contribution</strong> (Sự đóng góp)</td><td>Kênh này tạo ra được phản ứng mong muốn không?</td></tr>
+        <tr><td><strong>Commonality</strong> (Tính phổ quát)</td><td>Thông điệp có nhất quán trên tất cả kênh không?</td></tr>
+        <tr><td><strong>Complementarity</strong> (Tính bổ trợ)</td><td>Các kênh có hỗ trợ lẫn nhau để tạo hiệu quả tổng lực không?</td></tr>
+        <tr><td><strong>Conformability</strong> (Tính tương thích)</td><td>Kênh có phù hợp với các nhóm khách hàng khác nhau không?</td></tr>
+        <tr><td><strong>Cost</strong> (Chi phí)</td><td>Hiệu quả kinh tế tổng thể của chương trình có tốt không?</td></tr>
+      </tbody>
+    </table>
+
+    <h2>GIAI ĐOẠN 4: ĐO LƯỜNG & MỞ RỘNG</h2>
+
+    <h3>4.1 Chuỗi Giá trị Thương hiệu (Brand Value Chain)</h3>
+    <p>Quy trình: <strong>Đầu tư Marketing → Tâm trí Khách hàng → Hiệu suất Thị trường → Giá trị Cổ đông</strong></p>
+    <p><strong>3 Bộ nhân (Multipliers):</strong></p>
+    <ul>
+      <li><strong>Program Quality Multiplier (DRIVE):</strong> Distinctiveness, Relevance, Integrated, Value, Excellence.</li>
+      <li><strong>Marketplace Conditions Multiplier:</strong> Phản ứng đối thủ, Hỗ trợ kênh phân phối, Quy mô KH.</li>
+      <li><strong>Investor Sentiment Multiplier:</strong> Động lực thị trường, Tiềm năng tăng trưởng, Hồ sơ rủi ro.</li>
+    </ul>
+
+    <h3>4.2 Tháp Cộng hưởng Thương hiệu (Resonance Pyramid)</h3>
+    <pre class="diagram">
+                    [RESONANCE]
+                  ↗               ↖
+          [JUDGMENTS]          [FEELINGS]
+        ↗                               ↖
+  [PERFORMANCE]                    [IMAGERY]
+            ↖                   ↗
+                  [SALIENCE]
+    </pre>
+    <ul>
+      <li><strong>Giai đoạn 1 — Identity ("Bạn là ai?"):</strong> Tạo Sự nổi bật (Salience).</li>
+      <li><strong>Giai đoạn 2 — Meaning ("Bạn là gì?"):</strong> Xây dựng Hiệu suất (Performance) và Hình ảnh (Imagery).</li>
+      <li><strong>Giai đoạn 3 — Response ("Tôi nghĩ gì về bạn?"):</strong> Tạo Phán đoán (Judgments) và Cảm xúc (Feelings).</li>
+      <li><strong>Giai đoạn 4 — Relationships:</strong> Đạt tới sự Cộng hưởng (Resonance) và lòng trung thành mãnh liệt.</li>
+    </ul>
+
+    <h3>4.3 Kiến trúc Thương hiệu (Brand Architecture)</h3>
+    <p>3 bước: (1) Xác định Tiềm năng thương hiệu, (2) Xác định cơ hội mở rộng (Line Extension vs Category Extension), (3) Lựa chọn chiến lược gắn nhãn.</p>
+    <table>
+      <thead>
+        <tr><th>Chiến lược</th><th>Mô tả</th><th>Ví dụ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Branded House</strong></td><td>Một thương hiệu mẹ duy nhất cho tất cả sản phẩm</td><td>Google, FedEx</td></tr>
+        <tr><td><strong>House of Brands</strong></td><td>Mỗi sản phẩm một tên riêng hoàn toàn</td><td>P&G (Ariel, Pampers)</td></tr>
+        <tr><td><strong>Sub-brands</strong></td><td>Kết hợp tên mẹ + tên mới</td><td>iPhone Pro, Marriott Courtyard</td></tr>
+      </tbody>
+    </table>
+    
+    <p><strong>4 vai trò trong Danh mục (Brand Portfolio):</strong> Flanker Brands (Đánh sườn/Bảo vệ), Cash Cow Brands (Bò sữa/Sinh lời), Low-end (Thu hút), High-end (Nâng uy tín).</p>
+
+    <h3>📌 BẢNG TRA CỨU NHANH — Thuật ngữ Quan trọng</h3>
+    <table>
+      <thead>
+        <tr><th>Thuật ngữ</th><th>Nghĩa tiếng Việt</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Brand Equity</strong></td><td>Tài sản thương hiệu</td></tr>
+        <tr><td><strong>CBBE</strong></td><td>Tài sản thương hiệu dựa trên khách hàng</td></tr>
+        <tr><td><strong>POP / POD</strong></td><td>Điểm tương đồng / Điểm khác biệt</td></tr>
+        <tr><td><strong>Brand Salience</strong></td><td>Sự nổi bật thương hiệu</td></tr>
+        <tr><td><strong>Brand Resonance</strong></td><td>Cộng hưởng thương hiệu</td></tr>
+        <tr><td><strong>Brand Value Chain</strong></td><td>Chuỗi giá trị thương hiệu</td></tr>
+        <tr><td><strong>IMC</strong></td><td>Truyền thông marketing tích hợp</td></tr>
+        <tr><td><strong>Line / Category Extension</strong></td><td>Mở rộng dòng sản phẩm / Mở rộng danh mục</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<script>
+// SVG Mindmap Logic (From previous artifact)
+const CX=340, CY=295, MR=110, SR=240, SP=22;
+const toR = d => d * Math.PI / 180;
+const co = d => Math.cos(toR(d)), si = d => Math.sin(toR(d));
+const isDk = () => window.matchMedia('(prefers-color-scheme:dark)').matches;
+
+const RP = {
+  blue:  ['#185FA5','#378ADD','#85B7EB','#B5D4F4'],
+  teal:  ['#0F6E56','#1D9E75','#5DCAA5','#9FE1CB'],
+  amber: ['#854F0B','#BA7517','#EF9F27','#FAC775'],
+  purple:['#534AB7','#7F77DD','#AFA9EC','#CECBF6'],
+  gray:  ['#6B7280','#9CA3AF','#D1D5DB','#F3F4F6']
+};
+const acc = r => isDk() ? RP[r][2] : RP[r][0];
+
+const BR = [
+  {id:'b1', a:-135, r:'blue', l:'① NỀN TẢNG',
+   nd:[{id:'n11',l:'Brand vs Product'}, {id:'n12',l:'CBBE Framework'}, {id:'n13',l:'Brand Positioning'}, {id:'n14',l:'10 Challenges'}]},
+  {id:'b2', a:-45, r:'teal', l:'② VẬT LIỆU',
+   nd:[{id:'n21',l:'6 Brand Elements'}, {id:'n22',l:'6 Element Criteria'}, {id:'n23',l:'8 Secondary Assoc.'}, {id:'n24',l:'3 Leverage Factors'}]},
+  {id:'b3', a:45, r:'amber', l:'③ THỰC THI',
+   nd:[{id:'n31',l:'4P Brand Strategy'}, {id:'n32',l:'4 IMC Tools'}, {id:'n33',l:'6Cs Framework'}, {id:'n34',l:"Keller's 8Bs"}]},
+  {id:'b4', a:135, r:'purple', l:'④ ĐO LƯỜNG',
+   nd:[{id:'n41',l:'Brand Value Chain'}, {id:'n42',l:'Resonance Pyramid'}, {id:'n43',l:'Brand Architecture'}, {id:'n44',l:'Portfolio & Metrics'}]},
+];
+
+BR.forEach(b => {
+  b.mx = CX + MR * co(b.a); 
+  b.my = CY + MR * si(b.a);
+  const n = b.nd.length, st = (2 * SP) / (n - 1);
+  b.nd.forEach((nd, i) => {
+    const ag = b.a - SP + i * st;
+    nd.x = CX + SR * co(ag);
+    nd.y = CY + SR * si(ag);
+    nd.br = b.id;
+    nd.r = b.r;
+  });
+});
+
+const DET = {
+  n11:{b:'b1', title:'Brand vs Product', items:['Brand = Product + khía cạnh phân biệt — không nhất thiết là tính năng vật lý','5 Cấp độ SP: Core Benefit → Generic → Expected → Augmented → Potential','3 loại hàng hóa: Search goods / Experience goods / Credence goods','Brand giảm thiểu 6 loại Risk: Functional, Physical, Financial, Social, Psychological, Time']},
+  n12:{b:'b1', title:'CBBE — Customer-Based Brand Equity', items:['Định nghĩa: Hiệu ứng khác biệt từ Brand Knowledge lên phản ứng của khách hàng','Brand Awareness = Recognition (xác nhận đã thấy) + Recall (tự truy xuất từ ký ức)','Brand Image = Liên tưởng Mạnh mẽ + Thuận lợi + Độc đáo trong tâm trí KH','Sức mạnh Brand nằm trong tâm trí & trái tim của khách hàng — không ở nhà máy']},
+  n13:{b:'b1', title:'Brand Positioning', items:['Target Market — phân khúc theo hành vi / nhân khẩu / tâm lý học / địa lý','Competitive Frame of Reference — xác định ai là đối thủ thực sự','POP (Points-of-Parity): chứng minh brand "đủ tiêu chuẩn" trong danh mục','POD (Points-of-Difference): lý do thuyết phục để chọn brand này thay vì đối thủ']},
+  n14:{b:'b1', title:'10 Branding Challenges & Opportunities', items:['Downward price pressure / Winner-takes-all markets / Unexpected competition sources','Disintermediation (bỏ trung gian cũ) & Reintermediation (xuất hiện TG mới như Shopee)','Alternative info sources — KH tin vào review của TikToker hơn quảng cáo TV','Customer-centricity: Brand hiện đại = toàn bộ Customer Experience (CX)']},
+  n21:{b:'b2', title:'6 Brand Elements', items:['Brand Names — quan trọng nhất & khó thay đổi nhất sau khi in sâu vào tâm trí KH','URLs / Logos & Symbols — nhận diện trực quan và bảo vệ sở hữu trí tuệ online','Characters (nhân vật đại diện) / Slogans ("móc treo" truyền tải ý nghĩa)','Jingles (nhạc hiệu) / Packaging — tạo POD ngay tại Point of Sale']},
+  n22:{b:'b2', title:'6 Tiêu chí Brand Element', items:['Memorability — dễ nhớ, dễ nhận diện trong mọi tình huống mua hàng','Meaningfulness — mô tả được loại sản phẩm hoặc lợi ích chính','Likability (thú vị, thẩm mỹ) / Transferability (dùng được đa ngành & đa thị trường)','Adaptability (linh hoạt cập nhật theo thời gian) / Protectability (bảo hộ pháp lý)']},
+  n23:{b:'b2', title:'8 Secondary Brand Associations', items:['Company / Country of Origin — thừa hưởng uy tín sẵn có của tổ chức hoặc quốc gia','Co-Branding (liên minh thương hiệu) / Ingredient Branding (ví dụ: "Intel Inside")','Licensing (nhượng quyền thương hiệu) / Celebrity Endorsement (người nổi tiếng ủng hộ)','Events (tài trợ sự kiện) / Distribution Channels (hình ảnh kênh phân phối)']},
+  n24:{b:'b2', title:'3 Yếu tố để tận dụng Secondary Associations', items:['Awareness of entity — thực thể liên kết phải đủ nổi tiếng trong mắt khách hàng','Meaningfulness — kiến thức về thực thể đó phải có ý nghĩa với brand','Transferability — liên tưởng từ thực thể phải có khả năng "lan sang" brand','→ 2 chiến lược: Commonality (tương đồng sẵn có) & Complementarity (bổ sung thiếu hụt)']},
+  n31:{b:'b3', title:'4P Brand Strategy', items:['Product → Perceived Quality + Loyalty Programs (chăm sóc khách hàng sau mua)','Price → Value Pricing / EDLP — tránh giảm giá thất thường theo kiểu "răng cưa"','Channel → Direct (app, web) / Indirect (đại lý, nhà bán lẻ)','Nhà bán lẻ ảnh hưởng Brand Equity mạnh nhất — nơi KH đưa ra quyết định cuối cùng']},
+  n32:{b:'b3', title:'4 Công cụ IMC', items:['Advertising — trả phí, không cá nhân (TV, radio, báo chí, digital, OOH)','Promotion — kích thích mua ngắn hạn (giảm giá, tặng kèm cho KH & đại lý)','Events & Experiences — gắn kết cảm xúc qua trải nghiệm trực tiếp','Online & Mobile — chi phí thấp, cá nhân hóa cao, tương tác hai chiều']},
+  n33:{b:'b3', title:'6Cs — Tiêu chí chọn kênh IMC', items:['Coverage (độ phủ) — bao nhiêu % khách hàng mục tiêu tiếp cận được?','Contribution — kênh có tạo ra phản ứng mong muốn từ khách hàng không?','Commonality (nhất quán thông điệp) / Complementarity (các kênh bổ trợ nhau)','Conformability (tương thích đa nhóm KH) / Cost (hiệu quả kinh tế tổng thể)']},
+  n34:{b:'b3', title:"Keller's 8 Bs", items:['Be Analytical / Be Curious — dùng framework & nghiên cứu để hiểu khách hàng','Be Single-minded (tập trung TT mục tiêu) / Be Integrative (nhất quán đa kênh)','Be Creative / Be Observant — sáng tạo độc đáo, theo dõi đối thủ & thị trường','Be Patient / Be Realistic — xây dựng Brand Equity cần thời gian, hiểu thực tế']},
+  n41:{b:'b4', title:'Brand Value Chain', items:['4 Giai đoạn: Investment → Customer Mindset → Market Performance → Shareholder Value','Multiplier 1 (DRIVE): Distinctive, Relevant, Integrated, Valuable, Excellent','Multiplier 2: Market Conditions — phản ứng đối thủ, hỗ trợ kênh, quy mô KH','Multiplier 3: Investor Sentiment — tiềm năng tăng trưởng, hồ sơ rủi ro, đóng góp brand']},
+  n42:{b:'b4', title:'Resonance Pyramid — CBBE Model', items:['L1 Salience: Brand Awareness rộng và sâu — "Bạn là ai?"','L2 Performance (lý tính) + Imagery (cảm tính) — "Bạn là gì?"','L3 Judgments (phán đoán) + Feelings (cảm xúc) — "Tôi nghĩ & cảm gì?"','L4 Resonance: Lòng trung thành mãnh liệt & chủ động — đỉnh cao Brand Equity']},
+  n43:{b:'b4', title:'Brand Architecture', items:['3 mô hình: Branded House vs House of Brands vs Sub-brands','Line Extension (cùng danh mục) vs Category Extension (danh mục hoàn toàn mới)','Brand Hierarchy: Corporate → Family Brand → Individual Brand → Modifier','3 bước: Brand Potential → Extension Opportunities → Specify Brand Elements']},
+  n44:{b:'b4', title:'Brand Portfolio & Measurement', items:['4 vai trò: Flanker Brand / Cash Cow Brand / Low-end / High-end (Prestige)','Brand Audit = Inventory (hồ sơ hiện tại) + Exploratory (nghiên cứu tâm trí KH)','Brand Tracking — đo sức khỏe thương hiệu định kỳ với ROMI & Analytics Dashboard','BAV: Energized Differentiation / Relevance / Esteem / Knowledge']},
+};
+
+const ns = 'http://www.w3.org/2000/svg';
+const el = (t, a, txt) => {
+  const e = document.createElementNS(ns, t);
+  for(const [k, v] of Object.entries(a)) e.setAttribute(k, v);
+  if(txt != null) e.textContent = txt;
+  return e;
+};
+
+function buildMap() {
+  const svg = document.getElementById('mm');
+  [130, 268].forEach((r, i) => {
+    svg.appendChild(el('circle', {
+      cx: CX, cy: CY, r, fill: 'none', 
+      stroke: 'var(--color-border-tertiary)', 
+      'stroke-width': '1', 
+      'stroke-dasharray': i ? '4 16' : '6 10', 
+      opacity: i ? .5 : 1
+    }));
+  });
+
+  BR.forEach(b => {
+    const c = RP[b.r][0];
+    svg.appendChild(el('line', {x1: CX, y1: CY, x2: b.mx, y2: b.my, stroke: c, 'stroke-width': '2.5', 'stroke-opacity': '.6'}));
+    b.nd.forEach(n => svg.appendChild(el('line', {x1: b.mx, y1: b.my, x2: n.x, y2: n.y, stroke: c, 'stroke-width': '1.5', 'stroke-opacity': '.4'})));
+    
+    b.nd.forEach(n => {
+      const g = el('g', {class: `node c-${b.r}`, id: `${n.id}g`});
+      g.setAttribute('onclick', `window._sn('${n.id}')`);
+      g.appendChild(el('rect', {x: n.x - 85, y: n.y - 14, width: 170, height: 28, rx: 14, 'stroke-width': '1.5', stroke: c}));
+      g.appendChild(el('text', {class: 'ts', x: n.x, y: n.y, 'text-anchor': 'middle', 'dominant-baseline': 'central'}, n.l));
+      svg.appendChild(g);
+    });
+    
+    const gm = el('g', {class: `node c-${b.r}`, id: `${b.id}g`});
+    gm.setAttribute('onclick', `window._sb('${b.id}')`);
+    gm.appendChild(el('rect', {x: b.mx - 65, y: b.my - 22, width: 130, height: 44, rx: 22, 'stroke-width': '2.5', stroke: c}));
+    gm.appendChild(el('text', {class: 'th', x: b.mx, y: b.my, 'text-anchor': 'middle', 'dominant-baseline': 'central'}, b.l));
+    svg.appendChild(gm);
+  });
+
+  const gc = el('g', {class: 'node c-gray'});
+  gc.appendChild(el('circle', {cx: CX, cy: CY, r: 55, 'stroke-width': '2.5', stroke: RP['gray'][0]}));
+  gc.appendChild(el('text', {class: 'th', x: CX, y: CY - 8, 'text-anchor': 'middle', 'dominant-baseline': 'central'}, 'BRA301'));
+  gc.appendChild(el('text', {class: 'ts', x: CX, y: CY + 12, 'text-anchor': 'middle', 'dominant-baseline': 'central'}, 'Brand Mgmt'));
+  svg.appendChild(gc);
+}
+
+function updatePanel(branchLabel, branchRamp, nodeTitle, items) {
+  const c = acc(branchRamp);
+  document.getElementById('dd').style.display = 'none';
+  document.getElementById('dc').style.display = 'block';
+  document.getElementById('dp').style.borderColor = c;
+  document.getElementById('dp').style.boxShadow = `0 4px 12px ${c}20`;
+  document.getElementById('dbr').innerHTML = `<span style="color:${c}">${branchLabel}</span>`;
+  document.getElementById('dtt').textContent = nodeTitle;
+  document.getElementById('dis').innerHTML = (items || []).map(x => 
+    `<div class="dit"><div class="dbul" style="background:${c}"></div><span>${x}</span></div>`
+  ).join('');
+}
+
+window._sn = function(nid) {
+  const d = DET[nid];
+  if(!d) return;
+  const b = BR.find(x => x.id === d.b);
+  updatePanel(b.l, b.r, d.title, d.items);
+};
+
+window._sb = function(bid) {
+  const b = BR.find(x => x.id === bid);
+  updatePanel(b.l, b.r, 'Mục Lục Nhánh', ['Chọn vào các nút hình bầu dục nhỏ thuộc nhánh này để xem chi tiết kiến thức trọng tâm.']);
+};
+
+function buildLg() {
+  const lg = document.getElementById('lg');
+  BR.forEach(b => {
+    const d = document.createElement('div');
+    d.className = 'lgi';
+    d.onclick = () => window._sb(b.id);
+    d.innerHTML = `<div class="lgd-dot" style="background:${RP[b.r][0]}"></div><span>${b.l}</span>`;
+    lg.appendChild(d);
+  });
+}
+
+buildMap();
+buildLg();
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  const activeNode = document.getElementById('dtt').textContent;
+  if (activeNode) {
+    const currentDet = Object.entries(DET).find(([k, v]) => v.title === activeNode);
+    if(currentDet) window._sn(currentDet[0]);
+  }
+});
+</script>
+
+</body>
+</html>
